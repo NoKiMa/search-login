@@ -1,6 +1,5 @@
 import Login from '../models/login.model'
 import axios from 'axios'
-import { type } from 'os';
 
 const loginApiSevice = {
    getLoginsData: async () => {
