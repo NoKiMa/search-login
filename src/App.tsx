@@ -8,7 +8,9 @@ import Result from './components/Result';
 function App() {
   return (
     <div className="App">
-      <h1 className="header">Search Login</h1>
+      <div className="container">
+          <h1 className="header left-align">Search Login</h1>
+      </div>
       <SearchLogin/>
       <Result/>
     </div>
