@@ -4,7 +4,7 @@ import "../App.css"
 const Result = ()=>{
     return(
         <div className="table_container">
-        <p>Poka</p>
+        <p>Good</p>
       </div>
     )
 };

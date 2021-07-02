@@ -1,8 +1,15 @@
-import React, {useState} from "react";
+import React from "react";
+import {useState} from 'react'
 import "../App.css";
 
-const SearchLogin = () => {
-const [inputValue, setInputValue] = useState("")
+// Redux
+import {useDispatch} from 'react-redux';
+import { fetchLogin } from '../redux/redux';
+
+const SearchLogin:React.FC = () => {
+const [inputValue, setInputValue] = useState("");
+const dispatch = useDispatch();
+
     
   return (
     <div className="search_container">
@@ -10,7 +17,7 @@ const [inputValue, setInputValue] = useState("")
         <div className="row">
         <div className="input-field col s6 label">
           <input 
-            value={inputValue} 
+            value={inputValue}  
             id="first_name2" 
             type="text" 
             className="validate"
@@ -18,15 +25,20 @@ const [inputValue, setInputValue] = useState("")
             />
           <label className="active">Login</label>
         </div>
-        <div className=" input-field col s2 sub-btn-container">
+        <div className=" input-field col s2">
     
-           <a className="waves-effect waves-light btn-small blue-grey darken-3 rudius-btn ">Submit</a>
+           <button 
+           className="waves-effect waves-light btn-small blue-grey darken-3 rudius-btn"
+           onClick={
+            ()=> dispatch(fetchLogin())
+            // getData
+            }
+           >Submit
+           </button>
            
         </div>
       </div>
       </div>
-      
-      {/* <a className="waves-effect waves-light btn-small">Button</a> */}
     </div>
   );
 };
