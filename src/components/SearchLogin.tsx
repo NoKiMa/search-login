@@ -1,16 +1,17 @@
 import React from "react";
 import {useState} from 'react'
 import "../App.css";
-import ReduxState from "../models/redux.model"
+// import ReduxState from "../models/redux.model"
 
 // Redux
-import {useDispatch} from 'react-redux';
-import { fetchLogin, setSearchValue } from '../redux/redux';
+import {useDispatch, useSelector} from 'react-redux';
+import { fetchLogin, setSearchValue, setPage } from '../redux/redux';
+import ReduxState from "../models/redux.model";
 
 const SearchLogin:React.FC = () => {
 const [inputValue, setInputValue] = useState("");
 const dispatch = useDispatch();
-
+const current_page = useSelector((state: ReduxState) => state.current_page);
 
 
     
@@ -36,8 +37,9 @@ const dispatch = useDispatch();
             ()=> {
               if(inputValue!==''){
                 dispatch(setSearchValue(inputValue));
-                dispatch(fetchLogin(inputValue));
+                dispatch(fetchLogin({searchValue:inputValue, current_page}));
                 setInputValue('')
+                dispatch(setPage("1"))
               } else{
                 alert("Please enter login")
               }

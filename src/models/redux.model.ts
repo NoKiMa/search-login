@@ -5,7 +5,7 @@ interface ReduxState{
     status: boolean;
     error: string|undefined;
     total_count: number;
-    current_page: number;
+    current_page: string;
     post_on_page: string;
     searchValue: string;
 }
