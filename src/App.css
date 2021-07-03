@@ -15,7 +15,7 @@
   /* border: 1px solid #21262e; */
 }
 .table_container{
-  background-color: rgb(246, 248, 245);
+  /* background-color: rgb(246, 248, 245); */
   display: flex;
   justify-content: flex-start;
   width: 90%;
@@ -58,4 +58,19 @@
 }
 .sub-btn-container{
   margin-top: 23px;
+}
+.pages_container{
+  margin: 20px 0;
+}
+.page_num, .current_page_num{
+  border:1px solid rgb(246, 248, 245);
+  border-radius: 100%;
+  padding: 5px 10px;
+  margin: 0 10px;
+  color: rgb(246, 248, 245);
+  cursor: pointer;
+}
+.current_page_num{
+  border:2px solid rgb(246, 248, 245);
+  font-weight: 700;
 }

@@ -1,14 +1,17 @@
 import React from "react";
 import {useState} from 'react'
 import "../App.css";
+import ReduxState from "../models/redux.model"
 
 // Redux
 import {useDispatch} from 'react-redux';
-import { fetchLogin } from '../redux/redux';
+import { fetchLogin, setSearchValue } from '../redux/redux';
 
 const SearchLogin:React.FC = () => {
 const [inputValue, setInputValue] = useState("");
 const dispatch = useDispatch();
+
+
 
     
   return (
@@ -30,8 +33,16 @@ const dispatch = useDispatch();
            <button 
            className="waves-effect waves-light btn-small blue-grey darken-3 rudius-btn"
            onClick={
-            ()=> dispatch(fetchLogin())
-            // getData
+            ()=> {
+              if(inputValue!==''){
+                dispatch(setSearchValue(inputValue));
+                dispatch(fetchLogin(inputValue));
+                setInputValue('')
+              } else{
+                alert("Please enter login")
+              }
+              
+            }
             }
            >Submit
            </button>
