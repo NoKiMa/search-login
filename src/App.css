@@ -18,6 +18,7 @@
   /* background-color: rgb(246, 248, 245); */
   display: flex;
   justify-content: flex-start;
+  flex-direction: column;
   width: 90%;
 }
 .header{
@@ -73,4 +74,21 @@
 .current_page_num{
   border:2px solid rgb(246, 248, 245);
   font-weight: 700;
+}
+
+.table-style{
+  color: rgb(246, 248, 245);
+  width: 70%;
+  margin: auto;
+}
+.tr-thead{
+  border-bottom: 2px solid rgb(246, 248, 245);
+}
+.tr{
+  border-bottom: 1px solid rgb(246, 248, 245);
+}
+.avatar{
+  height: 25px;
+  width: 25px;
+  margin-left: 5px;
 }

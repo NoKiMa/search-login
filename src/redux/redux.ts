@@ -23,7 +23,7 @@ const initialData: ReduxState = {
   status: false,
   error: "",
   total_count:0,
-  post_on_page:"20",
+  post_on_page:"9",
   current_page:"1",
   searchValue:''
 };
