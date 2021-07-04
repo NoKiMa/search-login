@@ -48,6 +48,12 @@ const Result = () => {
     }
   },[sortParam, reduxState.state])
 
+  useEffect(()=>{
+    if(reduxState.error !== ""){
+      alert(reduxState.error);
+    }
+  },[reduxState.error])
+
   return reduxState.status ? (
     <div className="preloader-wrapper big active">
       <div className="spinner-layer spinner-red-only">

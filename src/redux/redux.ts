@@ -31,7 +31,6 @@ const initialData: ReduxState = {
 
 
 export const fetchLogin = createAsyncThunk("logins/fetchLogin", async (searchParams:SearchParams) => {
-  console.log("fetchLogin", searchParams.searchValue, searchParams.current_page, initialData.post_on_page)
      return await loginApiSevice.getLoginsData(searchParams.searchValue, searchParams.current_page , initialData.post_on_page);
 });
 
