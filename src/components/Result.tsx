@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import ReduxState from "../models/redux.model";
+//services
 import { creatPagesSevice } from "../services/creatPagesSevice";
+import {sortService} from "../services/sortService";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { setPage, fetchLogin } from "../redux/redux";
+import Login from "../models/login.model";
 
 const Result = () => {
   const [showTable, setShowTable] = useState(false);
+  const [sortParam, setSortParam] = useState({
+    fieldName: "login",
+    mode: true,
+  });
+  const reduxState = useSelector((state: ReduxState) => state);
+  const [sortState, setSortState] = useState<Login[]>(reduxState.state)
   const current_page = useSelector((state: ReduxState) => state.current_page);
   const searchValue = useSelector((state: ReduxState) => state.searchValue);
-  const reduxState = useSelector((state: ReduxState) => state);
+  
   const dispatch = useDispatch();
 
   const pagesCount = Math.ceil(
@@ -23,16 +32,21 @@ const Result = () => {
     if (searchValue !== "") {
       dispatch(fetchLogin({ searchValue, current_page }));
     }
-    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current_page]);
 
-  useEffect(()=>{
-    if (reduxState.state.length !== 0){
+  useEffect(() => {
+    if (reduxState.state.length !== 0) {
       setShowTable(true);
     }
-  },[reduxState.state])
+  }, [reduxState.state]);
 
-
+  useEffect(()=>{
+    if(reduxState.state.length!==0){
+        let sortedState = sortService(reduxState.state,sortParam.fieldName, sortParam.mode )
+        setSortState(sortedState);
+    }
+  },[sortParam, reduxState.state])
 
   return reduxState.status ? (
     <div className="preloader-wrapper big active">
@@ -48,20 +62,35 @@ const Result = () => {
         </div>
       </div>
     </div>
-  ) : showTable?(
+  ) : showTable ? (
     <div className="table_container">
       <div className="container">
         <table className="responsive-table table-style">
           <thead>
             <tr className="tr-thead">
-              <th>Avatar</th>
-              <th>Login</th>
-              <th>Type</th>
+              <th>{<div className="icon-container"> Avatar</div>}</th>
+              <th>
+                
+                {
+                  <div className="icon-container" onClick={() => setSortParam({fieldName:"login",mode: !sortParam.mode})}>
+                    Login
+                    <i className="tiny material-icons icon">arrow_drop_down</i>
+                  </div>
+                }
+              </th>
+              <th>
+                {
+                  <div className="icon-container" onClick={() => setSortParam({fieldName:"type",mode: !sortParam.mode})}>
+                    Type
+                    <i className="tiny material-icons icon">arrow_drop_down</i>
+                  </div>
+                }
+              </th>
             </tr>
           </thead>
 
           <tbody>
-            {reduxState.state.map((item, index) => (
+            {sortState.map((item, index) => (
               <tr key={index} className="tr">
                 <td>
                   {
@@ -99,7 +128,7 @@ const Result = () => {
         ))}
       </div>
     </div>
-  ):null;
+  ) : null;
 };
 
 export default Result;

@@ -92,3 +92,14 @@
   width: 25px;
   margin-left: 5px;
 }
+.icon{
+  color: rgb(246, 248, 245);
+  margin-top: 5px;
+  margin-left:3px;
+  cursor: pointer;
+
+}
+.icon-container{
+  display: flex;
+  align-items: center;
+}
