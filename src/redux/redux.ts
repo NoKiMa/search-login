@@ -5,13 +5,13 @@ import {
   createAsyncThunk,
 } from "@reduxjs/toolkit";
 //interfaces
-import Login from "../models/login.model";
+import User from "../models/login.model";
 import ReduxState from "../models/redux.model";
 //services
 import loginApiSevice from "../services/loginApiService";
 
 interface LoginObject{ 
-  logins: Login[];
+  users: User[];
   total_count: number;
 }
 interface SearchParams{ 
@@ -19,7 +19,7 @@ interface SearchParams{
   current_page: string;
 }
 const initialData: ReduxState = {
-  state: [] as Login[],
+  users: [] as User[],
   status: false,
   error: "",
   total_count:0,
@@ -63,7 +63,7 @@ const dataSlice = createSlice({
     builder.addCase(
       fetchLogin.fulfilled,
       (reduxState: ReduxState, action: PayloadAction<LoginObject>):ReduxState => {
-        reduxState.state=action.payload.logins;
+        reduxState.users=action.payload.users;
         reduxState.total_count = action.payload.total_count;
         reduxState.status = false;
         reduxState.error = '';

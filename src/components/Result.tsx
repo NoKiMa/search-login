@@ -3,11 +3,11 @@ import "../App.css";
 import ReduxState from "../models/redux.model";
 //services
 import { creatPagesService } from "../services/creatPagesService";
-import {sortService} from "../services/sortService";
+import { sortService } from "../services/sortService";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { setPage, fetchLogin } from "../redux/redux";
-import Login from "../models/login.model";
+import User from "../models/login.model";
 
 const Result = () => {
   const [showTable, setShowTable] = useState(false);
@@ -15,46 +15,53 @@ const Result = () => {
     fieldName: "login",
     mode: true,
   });
-  const reduxState = useSelector((state: ReduxState) => state);
-  const [sortState, setSortState] = useState<Login[]>(reduxState.state)
+  const reduxStore = useSelector((state: ReduxState) => state);
+  const [sortState, setSortState] = useState<User[]>(reduxStore.users);
   const current_page = useSelector((state: ReduxState) => state.current_page);
   const searchValue = useSelector((state: ReduxState) => state.searchValue);
-  
+
   const dispatch = useDispatch();
 
   const pagesCount = Math.ceil(
-    reduxState.total_count / parseInt(reduxState.post_on_page)
+    reduxStore.total_count / parseInt(reduxStore.post_on_page)
   );
-  const pages: number[] = creatPagesService([], pagesCount, parseInt(current_page));
-  
+  const pages: number[] = creatPagesService(
+    [],
+    pagesCount,
+    parseInt(current_page)
+  );
 
   useEffect(() => {
     if (searchValue !== "") {
       dispatch(fetchLogin({ searchValue, current_page }));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current_page]);
 
   useEffect(() => {
-    if (reduxState.state.length !== 0) {
+    if (reduxStore.users.length !== 0) {
       setShowTable(true);
     }
-  }, [reduxState.state]);
+  }, [reduxStore.users]);
 
-  useEffect(()=>{
-    if(reduxState.state.length!==0){
-        let sortedState = sortService(reduxState.state,sortParam.fieldName, sortParam.mode )
-        setSortState(sortedState);
+  useEffect(() => {
+    if (reduxStore.users.length !== 0) {
+      let sortedState = sortService(
+        reduxStore.users,
+        sortParam.fieldName,
+        sortParam.mode
+      );
+      setSortState(sortedState);
     }
-  },[sortParam, reduxState.state])
+  }, [sortParam, reduxStore.users]);
 
-  useEffect(()=>{
-    if(reduxState.error !== ""){
-      alert(reduxState.error);
+  useEffect(() => {
+    if (reduxStore.error !== "") {
+      alert(reduxStore.error);
     }
-  },[reduxState.error])
+  }, [reduxStore.error]);
 
-  return reduxState.status ? (
+  return reduxStore.status ? (
     <div className="preloader-wrapper big active">
       <div className="spinner-layer spinner-red-only">
         <div className="circle-clipper left">
@@ -76,19 +83,35 @@ const Result = () => {
             <tr className="tr-thead">
               <th>{<div className="icon-container"> Avatar</div>}</th>
               <th>
-                
                 {
-                  <div className="icon-container" onClick={() => setSortParam({fieldName:"login",mode: !sortParam.mode})}>
+                  <div
+                    className="icon-container"
+                    onClick={() =>
+                      setSortParam({
+                        fieldName: "login",
+                        mode: !sortParam.mode,
+                      })
+                    }
+                  >
                     Login
-                    <i className="tiny material-icons icon">{sortParam.mode?"arrow_drop_down":"arrow_drop_up"}</i>
+                    <i className="tiny material-icons icon">
+                      {sortParam.mode ? "arrow_drop_down" : "arrow_drop_up"}
+                    </i>
                   </div>
                 }
               </th>
               <th>
                 {
-                  <div className="icon-container" onClick={() => setSortParam({fieldName:"type",mode: !sortParam.mode})}>
+                  <div
+                    className="icon-container"
+                    onClick={() =>
+                      setSortParam({ fieldName: "type", mode: !sortParam.mode })
+                    }
+                  >
                     Type
-                    <i className="tiny material-icons icon">{sortParam.mode?"arrow_drop_down":"arrow_drop_up"}</i>
+                    <i className="tiny material-icons icon">
+                      {sortParam.mode ? "arrow_drop_down" : "arrow_drop_up"}
+                    </i>
                   </div>
                 }
               </th>

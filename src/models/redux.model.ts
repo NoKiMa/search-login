@@ -1,7 +1,7 @@
-import Login from './login.model'
+import User from './login.model'
 
 interface ReduxState{
-    state: Login[];
+    users: User[];
     status: boolean;
     error: string|undefined;
     total_count: number;

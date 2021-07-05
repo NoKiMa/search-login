@@ -1,6 +1,6 @@
-import Login from "../models/login.model";
+import User from "../models/login.model";
 
-export const loginsObjectArr: Login[] = [
+export const loginsObjectArr: User[] = [
   {
     avatar_url: "https://www.xxx.com",
     login: "Anton",
@@ -23,7 +23,7 @@ export const loginsObjectArr: Login[] = [
   },
 ];
 
-export const sortedStateByLoginUp: Login[] = [
+export const sortedStateByLoginUp: User[] = [
   {
     avatar_url: "https://www.xxx.com",
     login: "Anton",
@@ -46,7 +46,7 @@ export const sortedStateByLoginUp: Login[] = [
   },
 ];
 
-export const sortedStateByTypeUp: Login[] = [
+export const sortedStateByTypeUp: User[] = [
   {
     avatar_url: "https://www.xxx.com",
     login: "Baton",
@@ -69,7 +69,7 @@ export const sortedStateByTypeUp: Login[] = [
   },
 ];
 
-export const sortedStateByLoginDown: Login[] = [
+export const sortedStateByLoginDown: User[] = [
   {
     avatar_url: "https://www.xxx.com",
     login: "proton",
@@ -92,7 +92,7 @@ export const sortedStateByLoginDown: Login[] = [
   },
 ];
 
-export const sortedStateByTypeDown: Login[] = [
+export const sortedStateByTypeDown: User[] = [
   {
     avatar_url: "https://www.xxx.com",
     login: "Anton",

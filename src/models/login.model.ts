@@ -1,7 +1,11 @@
-interface Login{
-    avatar_url: string;
-    login: string;
-    type: string;
+interface User extends IObjectKeys {
+  avatar_url: string;
+  login: string;
+  type: string;
 }
 
-export default Login;
+interface IObjectKeys {
+  [key: string]: string | number;
+}
+
+export default User;

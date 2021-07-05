@@ -1,28 +1,20 @@
-import Login from "../models/login.model";
+import User from "../models/login.model";
 
 export const sortService = (
-  state: Login[],
+  users: User[],
   fieldName: string,
-  mode: boolean
-): Login[] => {
-  let sortState: Login[] = state.map(item =>{return {avatar_url:item.avatar_url, login:item.login, type:item.type}} );
-  if (mode) {
-    if (fieldName === "login") {
-        sortState.sort((a, b) => {return a.login < b.login ? -1 : a.login > b.login ? 1 : 0;});
-        return sortState;
-    } else {
-        sortState.sort((a, b) => { return a.type < b.type ? -1 : a.type > b.type ? 1 : 0;});
-        return sortState;
-    }
+  sortByAsc: boolean
+): User[] => {
+  let sortState: User[] = users.map((user) => {
+    return { avatar_url: user.avatar_url, login: user.login, type: user.type };
+  });
+  if (sortByAsc) {
+    return sortState.sort((a, b) => {
+      return a[fieldName]< b[fieldName] ? -1 : a[fieldName] > b[fieldName] ? 1 : 0;
+    });
   } else {
-    if (fieldName === "login") {
-        sortState.sort((a, b) => {return a.login > b.login ? -1 : a.login < b.login ? 1 : 0;});
-      return sortState;
-        
-    } else {
-        sortState.sort((a, b) => {return a.type > b.type ? -1 : a.type < b.type ? 1 : 0;});
-      return sortState;
-    }
-        
+    return sortState.sort((a, b) => {
+      return a[fieldName] > b[fieldName] ? -1 : a[fieldName] < b[fieldName] ? 1 : 0;
+    });
   }
 };
