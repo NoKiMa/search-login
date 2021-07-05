@@ -80,7 +80,7 @@ const Result = () => {
                 {
                   <div className="icon-container" onClick={() => setSortParam({fieldName:"login",mode: !sortParam.mode})}>
                     Login
-                    <i className="tiny material-icons icon">arrow_drop_down</i>
+                    <i className="tiny material-icons icon">{sortParam.mode?"arrow_drop_down":"arrow_drop_up"}</i>
                   </div>
                 }
               </th>
@@ -88,7 +88,7 @@ const Result = () => {
                 {
                   <div className="icon-container" onClick={() => setSortParam({fieldName:"type",mode: !sortParam.mode})}>
                     Type
-                    <i className="tiny material-icons icon">arrow_drop_down</i>
+                    <i className="tiny material-icons icon">{sortParam.mode?"arrow_drop_down":"arrow_drop_up"}</i>
                   </div>
                 }
               </th>
