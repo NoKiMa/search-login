@@ -8,7 +8,6 @@ describe("Must return the correct number of pages", () => {
       pagesCount
     );
   });
-
   test("if pagesCount >== 10 and current_page > 5", () => {
     let current_page = 8;
     let pagesCount = 11;
