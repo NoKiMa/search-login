@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../App.css";
 import ReduxState from "../models/redux.model";
 //services
-import { creatPagesSevice } from "../services/creatPagesSevice";
+import { creatPagesService } from "../services/creatPagesService";
 import {sortService} from "../services/sortService";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -25,8 +25,8 @@ const Result = () => {
   const pagesCount = Math.ceil(
     reduxState.total_count / parseInt(reduxState.post_on_page)
   );
-  const pages: number[] = [];
-  creatPagesSevice(pages, pagesCount, parseInt(current_page));
+  const pages: number[] = creatPagesService([], pagesCount, parseInt(current_page));
+  
 
   useEffect(() => {
     if (searchValue !== "") {

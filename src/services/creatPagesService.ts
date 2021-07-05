@@ -1,4 +1,4 @@
-export const creatPagesSevice = (pages:number[], pagesCount:number, currentPage:number)=>{
+export const creatPagesService = (pages:number[], pagesCount:number, currentPage:number)=>{
     if(pagesCount > 10) {
         if(currentPage > 5) {
             for (let i = currentPage-4; i <= currentPage+5; i++) {
@@ -17,4 +17,6 @@ export const creatPagesSevice = (pages:number[], pagesCount:number, currentPage:
             pages.push(i)
         }
     }
+
+    return pages;
 }
