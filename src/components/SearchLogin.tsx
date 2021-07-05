@@ -36,7 +36,7 @@ const SearchLogin: React.FC = () => {
               className="validate"
               onChange={(e) => setInputValue(e.target.value)}
             />
-            <label className="active">Login</label>
+            <label htmlFor="first_name" className="active">Login</label>
           </div>
           <div className=" input-field col s2">
             <button

@@ -78,7 +78,7 @@ const Result = () => {
   ) : showTable ? (
     <div className="table_container">
       <div className="container">
-        <table className="responsive-table table-style">
+        <table className="table-style">
           <thead>
             <tr className="tr-thead">
               <th>{<div className="icon-container"> Avatar</div>}</th>
